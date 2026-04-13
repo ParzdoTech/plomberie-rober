@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plomberie Robert – Saint-Lazare's Trusted Plumber</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark: #0f1923;
+    --dark2: #162330;
+    --blue: #1a4a6b;
+    --sky: #2e7db5;
+    --accent: #3fa8e0;
+    --accent-light: #7cc4ec;
+    --cream: #f4f1ec;
+    --warm: #faf8f4;
+    --text: #1c2b38;
+    --muted: #6b7e8c;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    background: var(--warm);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5rem;
+    background: rgba(15,25,35,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(63,168,224,0.2);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; color: #fff; letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--accent); font-style: italic; }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase;
+    color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent-light); }
+
+  .nav-cta {
+    background: var(--sky); color: #fff;
+    padding: 0.65rem 1.5rem; border-radius: 3px;
+    font-size: 0.82rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--accent); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--dark);
+    display: grid;
+    grid-template-columns: 55% 45%;
+    align-items: center;
+    padding: 8rem 5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Water ripple circles */
+  .hero-ripple {
+    position: absolute;
+    right: -80px; top: 50%; transform: translateY(-50%);
+    width: 700px; height: 700px;
+    pointer-events: none;
+  }
+  .ripple-ring {
+    position: absolute; border-radius: 50%;
+    border: 1px solid rgba(63,168,224,0.12);
+    top: 50%; left: 50%; transform: translate(-50%,-50%);
+    animation: ripple 4s ease-out infinite;
+  }
+  .ripple-ring:nth-child(1) { width: 200px; height: 200px; animation-delay: 0s; border-color: rgba(63,168,224,0.25); }
+  .ripple-ring:nth-child(2) { width: 380px; height: 380px; animation-delay: 0.8s; }
+  .ripple-ring:nth-child(3) { width: 540px; height: 540px; animation-delay: 1.6s; }
+  .ripple-ring:nth-child(4) { width: 700px; height: 700px; animation-delay: 2.4s; }
+
+  @keyframes ripple {
+    0% { opacity: 0.8; }
+    100% { opacity: 0; }
+  }
+
+  /* Dot grid */
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(63,168,224,0.08) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: rgba(63,168,224,0.1); border: 1px solid rgba(63,168,224,0.25);
+    color: var(--accent-light); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.45rem 1rem; border-radius: 20px; margin-bottom: 2rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 4.5vw, 4rem);
+    font-weight: 700; line-height: 1.1;
+    color: #fff; margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+  .hero-title em { font-style: italic; color: var(--accent); }
+
+  .hero-sub {
+    font-size: 1.05rem; line-height: 1.75; color: rgba(255,255,255,0.55);
+    max-width: 500px; margin-bottom: 2.5rem;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; align-items: center;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--sky); color: #fff;
+    padding: 1rem 2.2rem; border-radius: 3px;
+    font-size: 0.9rem; font-weight: 600;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+
+  .btn-ghost {
+    color: rgba(255,255,255,0.6); font-size: 0.9rem;
+    text-decoration: none; display: flex; align-items: center; gap: 0.4rem;
+    transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--accent-light); }
+
+  /* Hero stats row */
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    animation: fadeUp 0.7s 0.4s ease both;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 700; color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label { color: rgba(255,255,255,0.4); font-size: 0.8rem; margin-top: 0.3rem; }
+
+  /* ── STRIP ── */
+  .strip {
+    background: var(--sky);
+    padding: 1.2rem 5rem;
+    display: flex; gap: 3rem; align-items: center;
+    overflow: hidden;
+  }
+  .strip-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    color: rgba(255,255,255,0.9); font-size: 0.85rem; font-weight: 500;
+    white-space: nowrap;
+  }
+  .strip-item span { font-size: 1rem; }
+
+  /* ── SECTIONS ── */
+  .section { padding: 6rem 5rem; }
+
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--sky); margin-bottom: 0.8rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700; line-height: 1.2;
+    color: var(--dark); margin-bottom: 1rem;
+  }
+
+  .section-sub { color: var(--muted); font-size: 1rem; line-height: 1.75; max-width: 540px; }
+
+  /* ── ABOUT ── */
+  .about-section {
+    background: var(--cream);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+
+  .about-card {
+    background: var(--dark);
+    border-radius: 4px;
+    padding: 2rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-card::after {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+    background: var(--accent);
+  }
+
+  .about-card-label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; }
+  .about-card-value {
+    font-family: 'Playfair Display', serif; font-size: 2rem; color: #fff; font-weight: 700;
+  }
+  .about-card-desc { color: rgba(255,255,255,0.45); font-size: 0.85rem; margin-top: 0.2rem; }
+
+  .about-cards-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* ── SERVICES ── */
+  .services-section { background: var(--warm); }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3.5rem;
+  }
+
+  .service-card {
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.06);
+    border-radius: 4px;
+    padding: 2.2rem;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+    background: var(--sky); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); border-color: rgba(46,125,181,0.2); }
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .service-name {
+    font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700;
+    color: var(--dark); margin-bottom: 0.5rem;
+  }
+  .service-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.7; }
+
+  /* ── REVIEWS ── */
+  .reviews-section { background: var(--dark); }
+  .reviews-section .section-title { color: #fff; }
+  .reviews-section .section-sub { color: rgba(255,255,255,0.45); }
+  .reviews-section .section-label { color: var(--accent); }
+
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3.5rem;
+    grid-auto-flow: dense;
+  }
+
+  .review-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(63,168,224,0.15);
+    border-radius: 4px; padding: 2rem;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .review-card:hover { background: rgba(63,168,224,0.06); border-color: rgba(63,168,224,0.3); }
+
+  .review-stars { color: #f5c842; font-size: 0.9rem; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+  .review-text {
+    font-style: italic; color: rgba(255,255,255,0.7);
+    font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.2rem;
+  }
+  .review-author { color: var(--accent-light); font-size: 0.82rem; font-weight: 600; }
+  .review-meta { color: rgba(255,255,255,0.3); font-size: 0.75rem; margin-top: 0.2rem; }
+
+  /* ── TEAM ── */
+  .team-section { background: var(--cream); }
+
+  .team-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3.5rem;
+  }
+
+  .team-card {
+    background: #fff;
+    border-radius: 4px; padding: 2.2rem;
+    border: 1px solid rgba(0,0,0,0.06);
+    text-align: center;
+    transition: transform 0.2s;
+  }
+  .team-card:hover { transform: translateY(-3px); }
+
+  .team-avatar {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--blue);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.8rem; margin: 0 auto 1.2rem;
+    border: 3px solid rgba(63,168,224,0.2);
+  }
+  .team-name {
+    font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700;
+    color: var(--dark); margin-bottom: 0.3rem;
+  }
+  .team-role { color: var(--sky); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.6rem; }
+  .team-desc { color: var(--muted); font-size: 0.875rem; line-height: 1.65; }
+
+  /* ── QUOTE FORM ── */
+  .quote-section { background: var(--dark2); padding: 6rem 5rem; }
+
+  .quote-inner {
+    display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: start;
+  }
+
+  .quote-section .section-title { color: #fff; }
+  .quote-section .section-sub { color: rgba(255,255,255,0.45); }
+  .quote-section .section-label { color: var(--accent); }
+
+  .quote-details { margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+
+  .quote-detail-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    font-size: 1.2rem;
+  }
+  .detail-label {
+    font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 0.3rem;
+  }
+  .detail-value { color: rgba(255,255,255,0.65); font-size: 0.9rem; line-height: 1.6; }
+  .detail-value a { color: var(--accent-light); text-decoration: none; }
+
+  .quote-form-card {
+    background: #fff;
+    border-radius: 6px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--dark); margin-bottom: 1.8rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .form-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group.full { grid-column: span 2; }
+
+  .form-group label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    border: 1.5px solid rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    color: var(--dark);
+    background: var(--warm);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    appearance: none;
+    resize: none;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--sky);
+    box-shadow: 0 0 0 3px rgba(46,125,181,0.12);
+    background: #fff;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: #b0bec5; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--sky); color: #fff;
+    border: none; border-radius: 4px;
+    padding: 1rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem; font-weight: 600; letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .form-submit:hover { background: var(--accent); transform: translateY(-1px); }
+
+  .form-note {
+    text-align: center; color: var(--muted);
+    font-size: 0.78rem; margin-top: 0.8rem;
+  }
+
+  @media (max-width: 960px) {
+    .quote-section { padding: 4rem 1.5rem; }
+    .quote-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: span 1; }
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--sky) 100%);
+    padding: 5rem;
+    display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    right: -100px; top: -100px;
+  }
+
+  .cta-label { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 0.6rem; }
+  .cta-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 2.8vw, 2.4rem);
+    font-weight: 700; color: #fff; line-height: 1.2;
+  }
+  .cta-sub { color: rgba(255,255,255,0.7); margin-top: 0.6rem; font-size: 1rem; }
+
+  .cta-right { display: flex; flex-direction: column; gap: 1rem; align-items: flex-end; position: relative; z-index: 2; }
+
+  .cta-phone-link {
+    background: #fff; color: var(--blue);
+    padding: 1.1rem 2.5rem; border-radius: 3px;
+    font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700;
+    text-decoration: none; white-space: nowrap;
+    transition: transform 0.15s, box-shadow 0.2s;
+  }
+  .cta-phone-link:hover { transform: scale(1.03); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+
+  .cta-hours { color: rgba(255,255,255,0.65); font-size: 0.82rem; text-align: right; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    padding: 2.5rem 5rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(63,168,224,0.15);
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #fff;
+  }
+  .footer-logo span { color: var(--accent); font-style: italic; }
+  .footer-tag { color: rgba(255,255,255,0.3); font-size: 0.78rem; margin-top: 0.3rem; }
+
+  .footer-info { text-align: right; color: rgba(255,255,255,0.4); font-size: 0.82rem; line-height: 1.9; }
+  .footer-info a { color: var(--accent-light); text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 960px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 3rem; }
+    .section { padding: 4rem 1.5rem; }
+    .about-section { grid-template-columns: 1fr; gap: 3rem; }
+    .services-grid, .reviews-grid, .team-grid { grid-template-columns: 1fr; }
+    .cta-section { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+    .cta-right { align-items: flex-start; }
+    .cta-hours { text-align: left; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-info { text-align: center; }
+    .strip { padding: 1rem 1.5rem; gap: 1.5rem; flex-wrap: wrap; }
+    .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Plomberie <span>Robert</span></div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#quote">Get a Quote</a></li>
+  </ul>
+  <a href="tel:+14502184651" class="nav-cta">📞 Call Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">📍 Saint-Lazare, Québec</div>
+    <h1 class="hero-title">
+      Expert plumbing.<br>
+      <em>Outstanding</em> service.
+    </h1>
+    <p class="hero-sub">
+      From complex installations to everyday repairs, Plomberie Robert brings deep expertise and genuine care to every job — in Saint-Lazare and beyond.
+    </p>
+    <div class="hero-actions">
+      <a href="tel:+14502184651" class="btn-primary">📞 (450) 218-4651</a>
+      <a href="#services" class="btn-ghost">Our services →</a>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">4.6★</div>
+        <div class="stat-label">Google Rating</div>
+      </div>
+      <div>
+        <div class="stat-num">14+</div>
+        <div class="stat-label">Verified Reviews</div>
+      </div>
+      <div>
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Problems Solved</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-ripple">
+    <div class="ripple-ring"></div>
+    <div class="ripple-ring"></div>
+    <div class="ripple-ring"></div>
+    <div class="ripple-ring"></div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item"><span>✅</span> Licensed & Insured</div>
+  <div class="strip-item"><span>⚡</span> Fast Response</div>
+  <div class="strip-item"><span>🔧</span> Residential & Commercial</div>
+  <div class="strip-item"><span>🏆</span> Expert Knowledge</div>
+  <div class="strip-item"><span>🕐</span> Mon–Fri 7:30am–4pm</div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-section section" id="about">
+  <div>
+    <div class="section-label">Who We Are</div>
+    <h2 class="section-title reveal">Where expertise<br>meets great service.</h2>
+    <p class="section-sub reveal">
+      At Plomberie Robert, we go where other plumbers can't. Our team — including specialists like Manon and Maxime — brings patience, deep product knowledge, and a commitment to getting the job done right, even when it's complicated.
+    </p>
+    <p class="section-sub reveal" style="margin-top:1rem;">
+      From sourcing hard-to-find parts to walking you through every option for your new home, we treat every client like family.
+    </p>
+  </div>
+  <div class="about-visual reveal">
+    <div class="about-cards-row">
+      <div class="about-card">
+        <div class="about-card-label">Rating</div>
+        <div class="about-card-value">4.6 ★</div>
+        <div class="about-card-desc">Google Reviews</div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-label">Business Hours</div>
+        <div class="about-card-value" style="font-size:1rem; line-height:1.8;">
+          <span style="color:var(--accent);">Mon–Fri</span><br>
+          7:30 a.m. – 12:00 p.m.<br>
+          1:00 p.m. – 4:00 p.m.
+        </div>
+        <div class="about-card-desc" style="margin-top:0.5rem;">Closed Saturday & Sunday</div>
+      </div>
+    </div>
+    <div class="about-card">
+      <div class="about-card-label">Where to Find Us</div>
+      <div class="about-card-value" style="font-size:1.1rem; line-height:1.5;">700 Rte de la Cité-des-Jeunes<br>Saint-Lazare, QC J7T 1Z9</div>
+      <div class="about-card-desc" style="margin-top:0.5rem;">Serving Saint-Lazare & surrounding areas</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section section" id="services">
+  <div class="section-label">What We Do</div>
+  <h2 class="section-title reveal">Full-service plumbing<br>for every need.</h2>
+  <p class="section-sub reveal">Residential and commercial plumbing with after-service support. If something isn't right, we come back and fix it.</p>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-icon">🚿</span>
+      <div class="service-name">Shower & Bath Repair</div>
+      <p class="service-desc">Solved complex shower issues other plumbers couldn't fix. We dig deeper to find the real problem.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🏠</span>
+      <div class="service-name">New Home Plumbing</div>
+      <p class="service-desc">Full plumbing consultation and installation for new builds. Maxime helps you make informed choices for your home.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🔩</span>
+      <div class="service-name">Parts & Fixtures</div>
+      <p class="service-desc">Extensive product knowledge and supplier relationships. We source hard-to-find parts so you don't have to.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🏗️</span>
+      <div class="service-name">Home Appliances</div>
+      <p class="service-desc">Plumbing for home appliances handled quickly and correctly — with real after-service support if needed.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">💧</span>
+      <div class="service-name">Leak Detection & Repair</div>
+      <p class="service-desc">Find and fix leaks before they become expensive problems. Fast, accurate, and lasting repairs.</p>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-icon">🔧</span>
+      <div class="service-name">General Maintenance</div>
+      <p class="service-desc">Routine plumbing maintenance and inspections to keep your system running smoothly year-round.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section section" id="reviews">
+  <div class="section-label">Customer Reviews</div>
+  <h2 class="section-title reveal">What our clients say.</h2>
+  <p class="section-sub reveal">Rated 4.6 stars on Google across 14 reviews. Real feedback from real customers.</p>
+
+  <div class="reviews-grid">
+    <div class="review-card reveal" style="grid-column: span 2;">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"I have to hand it to Plomberie Robert for succeeding where other plumbers and engineers have failed at sorting out our master bath shower that went cold and unusable. Manon went to bat for us with a supplier that changed ownership for parts under warranty — no easy feat! Manon eventually scored the hardware. They sent Martin, who was incredible: friendly, patient, deliberate and detail-oriented. With a little grease and the midas touch, the cartridge is installed and we have hot water again for the first time in about a year. No more showering in the basement! Their persistence and superlative service delighted my wife and I. Thanks, Plomberie Robert. Chapeau. Well done!"</p>
+      <div class="review-author">Pat Y.</div>
+      <div class="review-meta">Local Guide · 3 years ago</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Outstanding performance from reception, consultation to final services. Very satisfied — we highly recommend."</p>
+      <div class="review-author">Sonia D.</div>
+      <div class="review-meta">2 years ago</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Fantastic experience! Maxime's patience, extensive product knowledge, and availability helped us make informed choices for our new home."</p>
+      <div class="review-author">David G.</div>
+      <div class="review-meta">Local Guide · 4 years ago</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Super great service. They handled our home appliances and their after-service is excellent. Had an issue and they had no problem fixing it quickly."</p>
+      <div class="review-author">Raquel G.</div>
+      <div class="review-meta">Local Guide · 5 years ago</div>
+    </div>
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"The staff know their products very well, with excellent suggestions. Great experience overall."</p>
+      <div class="review-author">Robert L.</div>
+      <div class="review-meta">11 months ago</div>
+    </div>
+    <div class="review-card reveal" style="background: rgba(63,168,224,0.08); border-color: rgba(63,168,224,0.35); display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;">
+      <div style="font-family:'Playfair Display',serif; font-size:3rem; font-weight:700; color:#fff; line-height:1;">4.6</div>
+      <div class="review-stars" style="margin: 0.5rem 0;">★★★★★</div>
+      <p style="color:rgba(255,255,255,0.5); font-size:0.82rem;">Based on 14 Google Reviews</p>
+      <a href="https://maps.google.com" style="margin-top:1rem; color:var(--accent-light); font-size:0.8rem; text-decoration:none; font-weight:500;">See all reviews →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section section">
+  <div class="section-label">Our People</div>
+  <h2 class="section-title reveal">The team behind<br>every great job.</h2>
+  <p class="section-sub reveal">Our clients mention our staff by name — that's the level of service we bring to every call.</p>
+
+  <div class="team-grid">
+    <div class="team-card reveal">
+      <div class="team-avatar">👩‍🔧</div>
+      <div class="team-name">Manon</div>
+      <div class="team-role">Senior Plumber</div>
+      <p class="team-desc">Goes above and beyond for clients — including going to bat with suppliers to source hard-to-find parts.</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">👨‍🔧</div>
+      <div class="team-name">Maxime</div>
+      <div class="team-role">Plumbing Consultant</div>
+      <p class="team-desc">Known for patience and deep product knowledge. Helps clients make the best choices for their homes.</p>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-avatar">🔧</div>
+      <div class="team-name">Our Team</div>
+      <div class="team-role">Always Here to Help</div>
+      <p class="team-desc">From the first call to after-service follow-up, every member of our team is committed to your satisfaction.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE FORM -->
+<section class="section quote-section" id="quote">
+  <div class="quote-inner">
+    <div class="quote-left">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title reveal">Prefer to write<br>to us? No problem.</h2>
+      <p class="section-sub reveal">Fill out the form and we'll get back to you within one business day with a free estimate. No pressure, no obligation.</p>
+      <div class="quote-details reveal">
+        <div class="quote-detail-item">
+          <span>📍</span>
+          <div>
+            <div class="detail-label">Address</div>
+            <div class="detail-value">700 Rte de la Cité-des-Jeunes<br>Saint-Lazare, QC J7T 1Z9</div>
+          </div>
+        </div>
+        <div class="quote-detail-item">
+          <span>📞</span>
+          <div>
+            <div class="detail-label">Phone</div>
+            <div class="detail-value"><a href="tel:+14502184651">(450) 218-4651</a></div>
+          </div>
+        </div>
+        <div class="quote-detail-item">
+          <span>🕐</span>
+          <div>
+            <div class="detail-label">Hours</div>
+            <div class="detail-value">Mon–Fri: 7:30–12:00 & 1:00–4:00 p.m.<br>Sat–Sun: Closed</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-right reveal">
+      <div class="quote-form-card">
+        <div class="form-title">Request a Free Estimate</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="Jean">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Tremblay">
+          </div>
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" placeholder="(514) 000-0000">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="jean@email.com">
+          </div>
+          <div class="form-group full">
+            <label>Address of the Project</label>
+            <input type="text" placeholder="123 Rue Principale, Saint-Lazare">
+          </div>
+          <div class="form-group full">
+            <label>Type of Service Needed</label>
+            <select>
+              <option value="" disabled selected>Select a service...</option>
+              <option>Drain Cleaning & Repair</option>
+              <option>Shower & Bath Repair</option>
+              <option>Leak Detection & Repair</option>
+              <option>New Home Plumbing</option>
+              <option>Pipe Replacement</option>
+              <option>Home Appliances</option>
+              <option>General Maintenance</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Describe Your Issue</label>
+            <textarea placeholder="Tell us what's going on — the more detail, the better we can help..." rows="4"></textarea>
+          </div>
+        </div>
+        <button class="form-submit">Send Request →</button>
+        <p class="form-note">We typically respond within 1 business day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div>
+    <div class="cta-label">Ready to get started?</div>
+    <h2 class="cta-title">Saint-Lazare's trusted<br>plumbing team is one call away.</h2>
+    <p class="cta-sub">Free estimates. No obligation. Real expertise.</p>
+  </div>
+  <div class="cta-right">
+    <a href="tel:+14502184651" class="cta-phone-link">📞 (450) 218-4651</a>
+    <div class="cta-hours">Mon–Fri: 7:30–12:00 & 1:00–4:00 p.m.<br>Sat–Sun: Closed</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">Plomberie <span>Robert</span></div>
+    <div class="footer-tag">Licensed Plumbing · Saint-Lazare, QC J7T 1Z9</div>
+  </div>
+  <div class="footer-info">
+    <div>700 Rte de la Cité-des-Jeunes, Saint-Lazare</div>
+    <div><a href="tel:+14502184651">(450) 218-4651</a></div>
+    <div style="margin-top:0.5rem; font-size:0.72rem; opacity:0.35;">© 2025 Plomberie Robert. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 90);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
